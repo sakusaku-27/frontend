@@ -1,38 +1,246 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+/* =========================
+   背景
+========================= */
+body {
+  margin: 0;
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* =========================
+   画面中央配置
+========================= */
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* =========================
+   ゲーム本体（←ここ重要）
+========================= */
+.game {
+  width: 1000px;
+  height: 650px;
+  display: flex;
+  background: rgba(0, 0, 0, 0.65);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+}
+
+/* =========================
+   左：立ち絵
+========================= */
+.left {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background: rgba(255,255,255,0.05);
+}
+
+.left img {
+  height: 100%;
+  object-fit: contain;
+  transition: 0.3s;
+}
+
+/* =========================
+   右：UI全体
+========================= */
+.right {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 25px;
+}
+
+/* =========================
+   テキストエリア
+========================= */
+.text-area {
+  flex: 1;
+}
+
+.right h2 {
+  margin: 0;
+  font-size: 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding-bottom: 8px;
+}
+
+.dialog {
+  font-size: 18px;
+  line-height: 1.8;
+  margin-top: 20px;
+  min-height: 180px;
+}
+
+/* =========================
+   下UIエリア
+========================= */
+.ui-area {
+  margin-top: 10px;
+}
+
+/* =========================
+   ボタン
+========================= */
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+button {
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ff7eb3, #ff758c);
+  color: white;
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #ff5c9c, #ff3e6c);
+}
+
+/* 次へ */
+.next-btn {
+  width: 100%;
+  margin-top: 10px;
+  background: linear-gradient(135deg, #6a82fb, #fc5c7d);
+}
+
+/* =========================
+   ステータス
+========================= */
+.status {
+  display: flex;
+  justify-content: space-around;
+  font-size: 14px;
+  margin-top: 12px;
+}
+
+/* =========================
+   名前入力（豪華版）
+========================= */
+.name-screen {
+  text-align: center;
+  background: rgba(0,0,0,0.6);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(255,255,255,0.1);
+}
+
+.name-input.big {
+  width: 400px;
+  padding: 18px;
+  font-size: 22px;
+  border-radius: 12px;
+  border: none;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* =========================
+   キャラ選択
+========================= */
+.select-container {
+  text-align: center;
+}
+
+.select-grid {
+  display: flex;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.select-card {
+  background: rgba(255,255,255,0.08);
+  padding: 15px;
+  border-radius: 15px;
+  width: 220px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.select-card:hover {
+  transform: scale(1.07);
+  background: rgba(255,255,255,0.15);
+}
+
+.select-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* =========================
+   エンディング
+========================= */
+.ending {
+  text-align: center;
+}
+
+/* =========================
+   フェード演出（オプション）
+========================= */
+.fade {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.select-container {
+  text-align: center;
+  width: 100%;
+}
+
+.select-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.select-card {
+  width: 220px;
+  background: rgba(255,255,255,0.08);
+  padding: 15px;
+  border-radius: 15px;
+  transition: 0.3s;
+  box-shadow: 0 0 15px rgba(255,255,255,0.05);
+}
+
+.select-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 0 25px rgba(255,255,255,0.2);
+}
+
+.select-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.select-card h3 {
+  margin-top: 10px;
+}
+
+.desc {
+  font-size: 14px;
+  margin: 10px 0;
+  color: #ddd;
+  line-height: 1.5;
 }
